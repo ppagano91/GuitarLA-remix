@@ -81,6 +81,6 @@
     transition-property: background-color;
     transition-duration: 500ms;
 }
-.header .navegacion a:hover{
+.header .navegacion a:hover, .active {
     background-color: var(--primary);   
 }
