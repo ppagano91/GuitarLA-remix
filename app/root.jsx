@@ -1,5 +1,6 @@
-import { Meta, Links, Outlet } from "@remix-run/react";
-import styles from "./styles/index.css";
+import { Meta, Links, Outlet, Scripts, LiveReload } from "@remix-run/react";
+import styles from "~/styles/index.css";
+import Header from "~/components/header";
 
 /* eslint-disable */
 export function meta() {
@@ -54,7 +55,12 @@ function Document({ children }) {
         <Meta />
         <Links />
       </head>
-      <body>{children}</body>
+      <body>
+        <Header />
+        {children}
+        <Scripts />
+        <LiveReload />
+      </body>
     </html>
   );
 }
