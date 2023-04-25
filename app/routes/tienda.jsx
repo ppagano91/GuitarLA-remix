@@ -17,7 +17,7 @@ const Tienda = () => {
       {guitarras?.length && (
         <div className="guitarras-grid">
           {guitarras.map((guitarra) => (
-            <Guitarra key={guitarra.id} guitarra={guitarra} />
+            <Guitarra key={guitarra.id} guitarra={guitarra.attributes} />
           ))}
         </div>
       )}
