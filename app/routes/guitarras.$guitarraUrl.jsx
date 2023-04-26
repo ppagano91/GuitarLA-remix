@@ -3,7 +3,29 @@ import React from "react";
 import { getGuitarra } from "~/models/guitarras.server";
 import styles from "~/styles/guitarras.css";
 
+export async function loader({ request, params }) {
+  const { guitarraUrl } = params;
+  const guitarra = await getGuitarra(guitarraUrl);
+  console.log("guitarra", guitarra);
+
+  if (guitarra.data.length === 0) {
+    throw new Response("", {
+      status: 404,
+      statusText: "Guitarra no encontrada",
+    });
+  }
+  return guitarra;
+}
+
 export function meta({ data }) {
+  if (data === undefined) {
+    return [
+      {
+        title: `GuitarLA - Guitarra no encontrada`,
+        description: `GuitarraLA - Venta de guirarras, gitarra no encontrada`,
+      },
+    ];
+  }
   // 1ºdata es de Remix, 2º data es de Strapi
   // console.log(data.data);
   return [
@@ -21,13 +43,6 @@ export function links() {
       href: styles,
     },
   ];
-}
-
-export async function loader({ request, params }) {
-  const { guitarraUrl } = params;
-  const guitarra = await getGuitarra(guitarraUrl);
-
-  return guitarra;
 }
 
 const Guitarra = () => {

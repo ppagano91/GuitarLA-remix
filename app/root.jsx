@@ -1,4 +1,12 @@
-import { Meta, Links, Outlet, Scripts, LiveReload } from "@remix-run/react";
+import {
+  Meta,
+  Links,
+  Outlet,
+  Scripts,
+  LiveReload,
+  useRouteError,
+  Link,
+} from "@remix-run/react";
 import styles from "~/styles/index.css";
 import Header from "~/components/header";
 import Footer from "~/components/footer";
@@ -64,5 +72,61 @@ function Document({ children }) {
         <LiveReload />
       </body>
     </html>
+  );
+}
+
+/**
+ * Manejo de errores
+ */
+// export function CatchBoundary() {
+//   const error = useCatch();
+//   return (
+//     <Document>
+//       {/* <h1>¡Ups! Algo salió mal</h1> */}
+//       <p className="error">
+//         {error.status} {error.statusText}
+//       </p>
+//     </Document>
+//   );
+// }
+// export function ErrorBoundary({ error }) {
+//   return (
+//     <Document>
+//       <p className="error">
+//         {error.status} {error.statusText}
+//       </p>
+//     </Document>
+//   );
+// }
+
+export function CatchBoundary() {
+  const error = useCatch(); // esto es un hook de remix
+
+  return (
+    <Document>
+      {/* de esta manera imprimimos los errores */}
+      <p className="error">
+        {error.status} {error.statusText}{" "}
+      </p>
+      <Link className="error-enlace" to="/">
+        Volver a la página de Inicio
+      </Link>
+    </Document>
+  );
+}
+
+export function ErrorBoundary() {
+  const error = useRouteError(); // esto es un hook de remix
+
+  return (
+    <Document>
+      {/* de esta manera imprimimos los errores */}
+      <p className="error">
+        {error.status} {error.statusText}{" "}
+      </p>
+      <Link className="error-enlace" to="/">
+        Volver a la página de Inicio
+      </Link>
+    </Document>
   );
 }
