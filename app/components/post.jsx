@@ -4,7 +4,7 @@ import React from "react";
 const Post = ({ post }) => {
   const { contenido, imagen, titulo, url, publishedAt } = post;
   return (
-    <article>
+    <article className="post">
       <img
         className="imagen"
         src={imagen.data.attributes.formats.small.url}
