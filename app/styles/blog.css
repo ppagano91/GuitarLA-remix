@@ -17,6 +17,8 @@
 }
 
 .post{
+    max-width: 80rem;
+    margin: 0 auto;
 
 }
 
@@ -44,3 +46,11 @@
     text-align: justify;
 }
 
+.post .texto{
+    white-space: pre-wrap;
+    text-align: justify;
+}
+
+.mt-3{
+    margin-top: 3rem;
+}

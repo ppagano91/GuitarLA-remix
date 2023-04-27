@@ -21,8 +21,8 @@ export function meta({ data }) {
   if (data === undefined) {
     return [
       {
-        title: `GuitarLA - Guitarra no encontrada`,
-        description: `GuitarraLA - Venta de guirarras, gitarra no encontrada`,
+        title: `GuitarraLA - Guitarra no encontrada`,
+        description: `GuitarraLA - Venta de guitarras, guitarra no encontrada`,
       },
     ];
   }
@@ -31,7 +31,7 @@ export function meta({ data }) {
   return [
     {
       title: `GuitarraLA - ${data.data[0].attributes.nombre}`,
-      description: `GuitarraLA - Venta de guirarras, gitarra ${data.data[0].attributes.nombre}`,
+      description: `GuitarraLA - Venta de guitarras, guitarra ${data.data[0].attributes.nombre}`,
     },
   ];
 }

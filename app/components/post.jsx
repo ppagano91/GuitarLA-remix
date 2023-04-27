@@ -2,6 +2,15 @@ import React from "react";
 import { Link } from "@remix-run/react";
 import { formatearFecha } from "~/utils/helpers";
 
+export function meta() {
+  return [
+    {
+      title: `GuitarLA - Post no encontrado`,
+      description: `GuitarraLA - Blog de música y Venta de guirarras`,
+    },
+  ];
+}
+
 const Post = ({ post }) => {
   const { contenido, imagen, titulo, url, publishedAt } = post;
   return (
