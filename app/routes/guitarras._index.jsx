@@ -1,22 +1,12 @@
 import { useLoaderData } from "@remix-run/react";
 import { getGuitarras } from "~/models/guitarras.server";
-import styles from "~/styles/guitarras.css";
-import ListadoGuitarras from "../components/listado-guitarras";
+import ListadoGuitarras from "~/components/listado-guitarras";
 
 export function meta() {
   return [
     {
       title: "GuitarraLA - Tienda de Guitarras",
       description: "GuitarraLA - Nuestra colección de guitarras",
-    },
-  ];
-}
-
-export function links() {
-  return [
-    {
-      rel: "stylesheet",
-      href: styles,
     },
   ];
 }
@@ -30,11 +20,7 @@ export async function loader() {
 
 const Tienda = () => {
   const guitarras = useLoaderData();
-  return (
-    <main className="contenedor">
-      <ListadoGuitarras guitarras={guitarras} />
-    </main>
-  );
+  return <ListadoGuitarras guitarras={guitarras} />;
 };
 
 export default Tienda;

@@ -30,6 +30,15 @@
     box-shadow: 0 0 10px 5px #ffcc00;
 }
 
+.guitarra.item:hover{
+    transform: none;    
+    box-shadow: none;
+}
+
+.guitarra .texto{
+    text-align: justify;
+}
+
 .guitarra .contenido{
     padding: 1rem;
 }
