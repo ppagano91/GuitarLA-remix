@@ -22,10 +22,15 @@
     transition: all 0.5s ease;
 }
   
-  .post:hover {
+.post:hover {
     transform: scale(1.05);    
     box-shadow: 0 0 10px 5px #ffcc00;
-  }
+}
+
+.post.item{
+    transform: none;    
+    box-shadow: none;
+}
 
 .post .contenido{
     padding: 1.5rem;
@@ -51,9 +56,10 @@
     text-align: justify;
 }
 
-.post .texto{
-    white-space: pre-wrap;
+
+.post .texto{    
     text-align: justify;
+    white-space: pre-line;
 }
 
 .mt-3{
