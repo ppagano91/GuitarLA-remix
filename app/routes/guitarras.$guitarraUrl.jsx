@@ -35,6 +35,8 @@ export function meta({ data }) {
   ];
 }
 
+const CANTIDAD_GUITARRAS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
 const Guitarra = () => {
   const guitarra = useLoaderData();
   const { descripcion, imagen, precio, nombre } = guitarra.data[0].attributes;
@@ -49,6 +51,18 @@ const Guitarra = () => {
         <h3>{nombre}</h3>
         <p className="texto">{descripcion}</p>
         <p className="precio">$ {precio}</p>
+        <form action="" className="formulario">
+          <label htmlFor="cantidad">Cantidad</label>
+          <select name="cantidad" id="cantidad">
+            <option value="">--- Seleccione ---</option>
+            {CANTIDAD_GUITARRAS.map((cantidad) => (
+              <option value={cantidad} key={cantidad}>
+                {cantidad}
+              </option>
+            ))}
+          </select>
+          <input type="submit" value="Agregar al carrito" />
+        </form>
       </div>
     </div>
   );
