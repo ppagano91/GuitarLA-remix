@@ -42,6 +42,22 @@ const Guitarra = () => {
   const [cantidad, setCantidad] = useState(0);
   const guitarra = useLoaderData();
   const { descripcion, imagen, precio, nombre } = guitarra.data[0].attributes;
+
+  const handleSumbit = (e) => {
+    e.preventDefault();
+    if (cantidad < 1) {
+      alert("Debes seleccionar una cantidad");
+      return;
+    }
+
+    const guitarraSeleccionada = {
+      id: guitarra.data[0].id,
+      imagen: imagen.data.attributes.url,
+      nombre,
+      precio,
+      cantidad,
+    };
+  };
   return (
     <div className="guitarra item">
       <img
@@ -53,14 +69,14 @@ const Guitarra = () => {
         <h3>{nombre}</h3>
         <p className="texto">{descripcion}</p>
         <p className="precio">$ {precio}</p>
-        <form action="" className="formulario">
+        <form onSubmit={handleSumbit} className="formulario">
           <label htmlFor="cantidad">Cantidad</label>
           <select
             name="cantidad"
             id="cantidad"
             onChange={(e) => setCantidad(parseInt(e.target.value))}
           >
-            <option value="">--- Seleccione ---</option>
+            <option value="0">--- Seleccione ---</option>
             {CANTIDAD_GUITARRAS.map((cantidad) => (
               <option value={cantidad} key={cantidad}>
                 {cantidad}
