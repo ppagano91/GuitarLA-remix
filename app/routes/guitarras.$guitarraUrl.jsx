@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useLoaderData } from "@remix-run/react";
 import React from "react";
 import { getGuitarra } from "~/models/guitarras.server";
@@ -38,6 +39,7 @@ export function meta({ data }) {
 const CANTIDAD_GUITARRAS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
 const Guitarra = () => {
+  const [cantidad, setCantidad] = useState(0);
   const guitarra = useLoaderData();
   const { descripcion, imagen, precio, nombre } = guitarra.data[0].attributes;
   return (
@@ -53,7 +55,11 @@ const Guitarra = () => {
         <p className="precio">$ {precio}</p>
         <form action="" className="formulario">
           <label htmlFor="cantidad">Cantidad</label>
-          <select name="cantidad" id="cantidad">
+          <select
+            name="cantidad"
+            id="cantidad"
+            onChange={(e) => setCantidad(parseInt(e.target.value))}
+          >
             <option value="">--- Seleccione ---</option>
             {CANTIDAD_GUITARRAS.map((cantidad) => (
               <option value={cantidad} key={cantidad}>
