@@ -20,6 +20,7 @@ export function meta() {
     },
   ];
 }
+const CANTIDAD_GUITARRAS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 const Carrito = () => {
   const { carrito } = useOutletContext();
   return (
@@ -41,9 +42,19 @@ const Carrito = () => {
                   </div>
                   <div>
                     <p className="nombre">{producto.nombre}</p>
-                    <p className="cantidad">
-                      Cantidad: <span>{producto.cantidad}</span>
-                    </p>
+                    <p className="cantidad">Cantidad:</p>
+                    <select
+                      className="select"
+                      name=""
+                      id=""
+                      value={producto.cantidad}
+                    >
+                      {CANTIDAD_GUITARRAS.map((cantidad) => (
+                        <option value={cantidad} key={cantidad}>
+                          {cantidad}
+                        </option>
+                      ))}
+                    </select>
                     <p className="precio">
                       Precio unidad: $<span>{producto.precio}</span>
                     </p>
