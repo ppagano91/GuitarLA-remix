@@ -53,8 +53,24 @@ export function links() {
 export default function App() {
   const [carrito, setCarrito] = useState([]);
   const agregarCarrito = (guitarra) => {
-    console.log("Agregando guitarra", guitarra);
-    setCarrito([...carrito, guitarra]);
+    // console.log("Agregando guitarra", guitarra);
+    // carrito.some(...): retorna true si al menos un elemento cumpla la condición, es decir, existe en el array
+    if (carrito.some((guitarraState) => guitarraState.id === guitarra.id)) {
+      // Iterar sobre el arreglo "carrito" e identicar el elemento duplicado
+      const carritoActualizado = carrito.map((guitarraState) => {
+        if (guitarraState.id === guitarra.id) {
+          //Opción 1: Reescribir la cantidad
+          guitarraState.cantidad = guitarra.cantidad;
+          // Opción 2: Sumar la cantidad
+          // guitarraState.cantidad += guitarra.cantidad;
+        }
+        return guitarraState;
+      });
+      // Añadir a Carrito
+      setCarrito(carritoActualizado);
+    } else {
+      setCarrito([...carrito, guitarra]);
+    }
   };
   return (
     <Document>
