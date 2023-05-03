@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Meta,
   Links,
@@ -51,7 +51,19 @@ export function links() {
 /* eslint-enable */
 
 export default function App() {
-  const [carrito, setCarrito] = useState([]);
+  const carritoLocalStorage =
+    typeof window !== "undefined"
+      ? JSON.parse(localStorage.getItem("carrito")) ?? []
+      : null;
+
+  const [carrito, setCarrito] = useState(carritoLocalStorage);
+
+  // Si se coloca el localstorage en el useEffect, se ejecutará para la parte del cliente del de Remix y no en el servidor
+  // Si se coloca el localstorage en el useEffect, se ejecutará para la parte del cliente del de Remix y en el servidor, pero en el servidor no existe y se generará un error
+  useEffect(() => {
+    localStorage.setItem("carrito", JSON.stringify(carrito));
+  }, [carrito]);
+
   const agregarCarrito = (guitarra) => {
     // console.log("Agregando guitarra", guitarra);
     // carrito.some(...): retorna true si al menos un elemento cumpla la condición, es decir, existe en el array
