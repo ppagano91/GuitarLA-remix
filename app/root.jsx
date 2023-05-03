@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   Meta,
   Links,
@@ -50,9 +51,18 @@ export function links() {
 /* eslint-enable */
 
 export default function App() {
+  const [carrito, setCarrito] = useState([]);
+  const agregarCarrito = (guitarra) => {
+    console.log("Agregando guitarra", guitarra);
+    setCarrito([...carrito, guitarra]);
+  };
   return (
     <Document>
-      <Outlet />
+      <Outlet
+        context={{
+          agregarCarrito,
+        }}
+      />
     </Document>
   );
 }
