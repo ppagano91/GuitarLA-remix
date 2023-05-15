@@ -103,3 +103,44 @@
     background-color: var(--primary);
 
 }
+
+
+.modal-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .modal {
+    background-color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    position:relative
+  }
+  .modal p{
+    margin-top: 2rem;
+  }
+  
+  .close-btn {
+    all: unset;
+    position: absolute;    
+    border: none;    
+    cursor: pointer;
+    top:1rem;
+    right:1rem;
+    padding: 0 0.5rem; 
+  }
+  
+  .close-btn:hover {
+    background-color: #d32f2f;
+    color: white;
+    border-radius: 10px;
+  }

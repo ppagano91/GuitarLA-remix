@@ -2,11 +2,12 @@ import { useState } from "react";
 import { useLoaderData, useOutletContext } from "@remix-run/react";
 import React from "react";
 import { getGuitarra } from "~/models/guitarras.server";
+import Modal from "~/components/modal";
 
 export async function loader({ request, params }) {
   const { guitarraUrl } = params;
   const guitarra = await getGuitarra(guitarraUrl);
-  console.log("guitarra", guitarra);
+  // console.log("guitarra", guitarra);
 
   if (guitarra.data.length === 0) {
     throw new Response("", {
@@ -39,6 +40,7 @@ export function meta({ data }) {
 const CANTIDAD_GUITARRAS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
 const Guitarra = () => {
+  const [mostrarModal, setMostrarModal] = useState(false);
   const { agregarCarrito } = useOutletContext();
   const [cantidad, setCantidad] = useState(0);
   const guitarra = useLoaderData();
@@ -59,6 +61,10 @@ const Guitarra = () => {
       cantidad,
     };
     agregarCarrito(guitarraSeleccionada);
+    setMostrarModal(true);
+    setTimeout(() => {
+      setMostrarModal(false);
+    }, 3000); // 3000 milisegundos = 3 segundos
   };
 
   return (
@@ -80,7 +86,7 @@ const Guitarra = () => {
             onChange={(e) => setCantidad(parseInt(e.target.value))}
           >
             <option value="0">--- Seleccione ---</option>
-            {CANTIDAD_GUITARRAS.map((cantidad) => (
+            {CANTIDAD_GUITARRAS?.map((cantidad) => (
               <option value={cantidad} key={cantidad}>
                 {cantidad}
               </option>
@@ -88,6 +94,7 @@ const Guitarra = () => {
           </select>
           <input type="submit" value="Agregar al carrito" />
         </form>
+        {mostrarModal && <Modal></Modal>}
       </div>
     </div>
   );
